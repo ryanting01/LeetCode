@@ -22,9 +22,18 @@ class Solution {
         
         //ITERATIVELY
         List<Integer> result = new ArrayList<Integer>();
-        while(root!=null) {
-            
+        Stack<TreeNode> stack = new Stack<>();
+        
+        stack.push(root);
+        if(root==null) return result;
+        while(!stack.isEmpty()) {
+            TreeNode node = stack.peek();
+            result.add(node.val);
+            stack.pop();
+            if(node.right!=null)stack.push(node.right);
+            if(node.left!=null) stack.push(node.left);
         }
+        return result;
         
     }
     private List<Integer> recursivePreOrder(TreeNode root, List<Integer> result) {
